@@ -1,0 +1,52 @@
+import cv2 -> image processing
+cap = cv2.VideoCapture(0)
+status, photo = cap.read()
+cv2.imwrite("which name you want to store", photo); -> name with extension
+cv2.imshow("name of photo", photo)
+cv2.waitKey(5000) -> miliseconds
+cv2.waitKey() -> will not close automatically, close on any key press
+print(cv2.waitKey()) -> capture number of key
+cv2.destroyAllWindows()
+
+click image -> show images, continully -> video streaming
+
+while loop:
+
+while Ture               -> for infinite loop
+
+    status, photo = cap.read()
+    cv2.imshow("myphoto", photo)
+    if cv2.waitKey(100) == 13;
+	break;
+    
+
+cv2.destroyAllWindows()
+
+cap.release()
+
+
+cvzone -> library for hand ditaction 
+pip install cvzone
+pip install mediapipe
+
+
+from cvzone.HandTrackingModule import HandDetector
+
+cap = cv2.VideoCapture(0)
+stats, photo = cap.read()
+detector = HandDetector(maxHands=1)
+fphoto = detector.findHands(photo, draw=False) -> detect hand form image
+
+fphoto
+
+if fphoto:
+    lmlist = fphoto[0]
+    totalfinger = detector.fingersUp(lmlist)
+    if totalfinger == [0, 1, 1, 0, 0]:
+	print("i know 2 and 3 finger is up")
+    elif totalfinger == [0, 1, 0, 0, 0]:
+	print("i know only 1 finger up, index finger")
+    else:
+	print("i dont consider in my do it with attitude")
+
+
